@@ -14,3 +14,12 @@ export function probabilityByCount<T>(toObserve: T, on: Array<T>): number{
 export function probabilityOfAll<T>(on: Array<T>){
     return on.flatMap((v)=> [{ name: `${v}`, probability: probabilityByCount(v, on)}])
 }
+
+/**
+ * calculates the probability of all supplied observations
+ * @param on the array of data
+ * @param observations the values to observe
+ */
+export function probabilityOfInputs<T>(on: Array<T>, observations: Array<T>){
+    return observations.flatMap((v)=> [{ name: `${v}`, probability: probabilityByCount(v, on)}])
+}
