@@ -29,6 +29,14 @@ export function probabilityOfInputs<T>(on: Array<T>, observations: Array<T>){
  * @param eventA 
  * @param eventB 
  */
-export function conditionalProbability<T>(eventA: Array<T>, eventB: Array<T>){
+export function conditionalDependantProbability<T>(eventA: Array<T>, eventB: Array<T>){
     return eventA.filter((v)=>eventB.includes(v)).length / eventB.length; // (x elements in A that is in B) / x elements in B
+}
+/**
+ * Calculates the probability that event 0 will occur followed by N and so on
+ * @param sampleSpace 
+ * @param events 
+ */
+export function conditionalIndependentProbability<T>(sampleSpace: Array<T>, ...events: T[]){
+    return events.map((event)=> probabilityByCount(event, sampleSpace)).flatMap((val, index, arr)=> val * arr[index + 1])[0]
 }
