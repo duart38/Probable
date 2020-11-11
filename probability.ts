@@ -38,5 +38,5 @@ export function conditionalDependantProbability<T>(eventA: Array<T>, eventB: Arr
  * @param events 
  */
 export function conditionalIndependentProbability<T>(sampleSpace: Array<T>, ...events: T[]){
-    return events.map((event)=> probabilityByCount(event, sampleSpace)).flatMap((val, index, arr)=> val * arr[index + 1])[0]
+    return events.map((event)=> probabilityByCount(event, sampleSpace)).reduce((prev, curr)=> prev * curr)
 }
