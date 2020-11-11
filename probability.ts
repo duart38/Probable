@@ -23,3 +23,12 @@ export function probabilityOfAll<T>(on: Array<T>){
 export function probabilityOfInputs<T>(on: Array<T>, observations: Array<T>){
     return observations.flatMap((v)=> [{ name: `${v}`, probability: probabilityByCount(v, on)}])
 }
+
+/**
+ * Calculates the probability that event A will occur given that event B has already occurred.
+ * @param eventA 
+ * @param eventB 
+ */
+export function conditionalProbability<T>(eventA: Array<T>, eventB: Array<T>){
+    return eventA.filter((v)=>eventB.includes(v)).length / eventB.length; // (x elements in A that is in B) / x elements in B
+}
